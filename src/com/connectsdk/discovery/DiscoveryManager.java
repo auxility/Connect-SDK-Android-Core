@@ -53,6 +53,7 @@ import com.connectsdk.service.DLNAService;
 import com.connectsdk.service.DeviceService;
 import com.connectsdk.service.DeviceService.PairingType;
 import com.connectsdk.service.NetcastTVService;
+import com.connectsdk.service.WebOSTVService;
 import com.connectsdk.service.command.ServiceCommandError;
 import com.connectsdk.service.config.ServiceConfig;
 import com.connectsdk.service.config.ServiceConfig.ServiceConfigListener;
@@ -876,7 +877,7 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
         } else if (deviceServiceClass == NetcastTVService.class) {
             if (!isNetcast(desc))
                 return;
-        } 
+        }
 
         ServiceConfig serviceConfig = null;
 
@@ -887,6 +888,10 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
             serviceConfig = new ServiceConfig(desc);
 
         serviceConfig.setListener(DiscoveryManager.this);
+
+        if (deviceServiceClass == com.connectsdk.service.WebOSTVService.class) {
+            device.addService(new WebOSTVService(desc, serviceConfig));
+        }
 
         boolean hasType = false;
         boolean hasService = false;
