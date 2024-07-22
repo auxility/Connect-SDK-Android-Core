@@ -378,10 +378,7 @@ public class ConnectableDevice implements DeviceServiceListener {
             }
         }
 
-        // In case of Service Integration, a device is assumed as connected,
-        // if a service in the device is connected.
-        return connectedCount >= 1;
-        //return connectedCount >= services.size();
+        return connectedCount >= services.size();
     }
     // @endcond
 

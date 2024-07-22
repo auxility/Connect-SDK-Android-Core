@@ -890,7 +890,11 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
         serviceConfig.setListener(DiscoveryManager.this);
 
         if (deviceServiceClass == com.connectsdk.service.WebOSTVService.class) {
-            device.addService(new WebOSTVService(desc, serviceConfig));
+            device.addService(new com.connectsdk.service.WebOSTVService(desc, serviceConfig));
+        } else if(deviceServiceClass == com.connectsdk.service.DLNAService.class) {
+            device.addService(new com.connectsdk.service.DLNAService(desc, serviceConfig));
+        } else if(deviceServiceClass == com.connectsdk.service.DIALService.class) {
+            device.addService(new com.connectsdk.service.DIALService(desc, serviceConfig));
         }
 
         boolean hasType = false;
