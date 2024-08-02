@@ -22,6 +22,7 @@ package com.connectsdk.service;
 
 import android.text.TextUtils;
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.AppInfo;
 import com.connectsdk.core.ImageInfo;
@@ -68,6 +69,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+@Keep
 public class RokuService extends DeviceService implements Launcher, MediaPlayer, MediaControl, KeyControl, TextInputControl {
 
     public static final String ID = "Roku";

@@ -23,6 +23,8 @@ package com.connectsdk.discovery.provider;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.discovery.DiscoveryProvider;
@@ -50,6 +52,7 @@ import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+@Keep
 public class SSDPDiscoveryProvider implements DiscoveryProvider {
     Context context;
 

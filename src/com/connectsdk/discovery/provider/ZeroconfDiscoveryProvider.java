@@ -38,12 +38,15 @@ import javax.jmdns.ServiceListener;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.discovery.DiscoveryProvider;
 import com.connectsdk.discovery.DiscoveryProviderListener;
 import com.connectsdk.service.config.ServiceDescription;
 
+@Keep
 public class ZeroconfDiscoveryProvider implements DiscoveryProvider {
     private static final String HOSTNAME = "connectsdk";
 

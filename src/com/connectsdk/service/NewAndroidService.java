@@ -1,11 +1,13 @@
 package com.connectsdk.service;
 
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.service.config.ServiceConfig;
 import com.connectsdk.service.config.ServiceDescription;
 
+@Keep
 public class NewAndroidService extends DeviceService {
 
     public static final String ID = "AndroidTV2";

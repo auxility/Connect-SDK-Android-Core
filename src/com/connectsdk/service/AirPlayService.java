@@ -23,6 +23,7 @@ package com.connectsdk.service;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.ImageInfo;
 import com.connectsdk.core.MediaInfo;
@@ -64,6 +65,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+@Keep
 public class AirPlayService extends DeviceService implements MediaPlayer, MediaControl {
     public static final String X_APPLE_SESSION_ID = "X-Apple-Session-ID";
     public static final String ID = "AirPlay";

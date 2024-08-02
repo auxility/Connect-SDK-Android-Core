@@ -27,6 +27,7 @@ import android.graphics.PointF;
 import android.util.Log;
 import android.view.Surface;
 import androidx.annotation.NonNull;
+import androidx.annotation.Keep;
 import com.connectsdk.core.AppInfo;
 import com.connectsdk.core.ChannelInfo;
 import com.connectsdk.core.ExternalInputInfo;
@@ -95,6 +96,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+@Keep
 @SuppressLint("DefaultLocale")
 public class WebOSTVService extends WebOSTVDeviceService implements Launcher, MediaPlayer, PlaylistControl, VolumeControl, TVControl, ToastControl, ExternalInputControl, MouseControl, KeyControl, TextInputControl, WebAppLauncher, ScreenMirroringControl, RemoteCameraControl {
 

@@ -24,6 +24,7 @@ import android.content.Context;
 import android.text.Html;
 import android.util.Log;
 import android.util.Xml;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.ImageInfo;
 import com.connectsdk.core.MediaInfo;
@@ -89,7 +90,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
+@Keep
 public class DLNAService extends DeviceService implements PlaylistControl, MediaControl, MediaPlayer, VolumeControl {
     public static final String ID = "DLNA";
 

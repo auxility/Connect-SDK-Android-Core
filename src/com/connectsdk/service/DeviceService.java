@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.SparseArray;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.Util;
 import com.connectsdk.device.ConnectableDevice;
@@ -68,6 +69,7 @@ import com.connectsdk.service.sessions.LaunchSession;
  * ####Capabilities
  * All DeviceService objects have a group of capabilities. These capabilities can be implemented by any object, and that object will be returned when you call the DeviceService's capability methods (launcher, mediaPlayer, volumeControl, etc).
  */
+@Keep
 public class DeviceService implements DeviceServiceReachabilityListener, ServiceCommandProcessor {
 
     /**

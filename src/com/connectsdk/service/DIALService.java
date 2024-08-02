@@ -21,6 +21,7 @@
 package com.connectsdk.service;
 
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.AppInfo;
 import com.connectsdk.core.Util;
@@ -50,6 +51,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+@Keep
 public class DIALService extends DeviceService implements Launcher {
 
     public static final String ID = "DIAL";

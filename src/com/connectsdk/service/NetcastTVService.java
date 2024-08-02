@@ -22,6 +22,7 @@ package com.connectsdk.service;
 
 import android.graphics.PointF;
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.connectsdk.core.AppInfo;
 import com.connectsdk.core.ChannelInfo;
@@ -85,6 +86,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+@Keep
 public class NetcastTVService extends DeviceService implements Launcher, MediaControl, MediaPlayer, TVControl, VolumeControl, ExternalInputControl, MouseControl, TextInputControl, PowerControl, KeyControl {
 
     public static final String ID = "Netcast TV";
