@@ -26,6 +26,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 public class NetcastPOSTRequestParser extends DefaultHandler {
     public JSONObject object;
     public JSONObject subObject;
@@ -68,7 +70,7 @@ public class NetcastPOSTRequestParser extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         try {
-            System.out.println("XML key: " + qName + ", value: " + value);
+            LoggerManager.Companion.getInstance().log("XML key: " + qName + ", value: " + value);
             if (qName.equalsIgnoreCase(CHANNEL_TYPE)) {
                 object.put("channelModeName", value);
             }

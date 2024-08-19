@@ -34,6 +34,8 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import android.util.Log;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 public class WebOSTVMouseSocketConnection {
     public interface WebOSTVMouseSocketListener {
         void onConnected();
@@ -54,7 +56,7 @@ public class WebOSTVMouseSocketConnection {
     }
 
     public WebOSTVMouseSocketConnection(String socketPath, WebOSTVMouseSocketListener listener) {
-        Log.d("PtrAndKeyboardFragment", "got socketPath: " + socketPath);
+        LoggerManager.Companion.getInstance().log("PtrAndKeyboardFragment, got socketPath: " + socketPath);
 
         this.listener = listener; 
         this.socketPath = socketPath;
@@ -77,7 +79,7 @@ public class WebOSTVMouseSocketConnection {
 
             @Override
             public void onOpen(ServerHandshake arg0) {
-                Log.d("PtrAndKeyboardFragment", "connected to " + uri.toString());
+                LoggerManager.Companion.getInstance().log("PtrAndKeyboardFragment, connected to " + uri.toString());
                 if (listener != null) {
                     listener.onConnected();
                 }
@@ -125,9 +127,9 @@ public class WebOSTVMouseSocketConnection {
 
     public boolean isConnected() {
         if (ws == null) 
-            System.out.println("ws is null");
+            LoggerManager.Companion.getInstance().log("ws is null");
         else if (ws.getReadyState() != ReadyState.OPEN) {
-            System.out.println("ws state is not ready");
+            LoggerManager.Companion.getInstance().log("ws state is not ready");
         }
         return (ws != null) && (ws.getReadyState() == ReadyState.OPEN);
     }

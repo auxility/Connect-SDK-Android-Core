@@ -65,6 +65,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class AirPlayService extends DeviceService implements MediaPlayer, MediaControl {
     public static final String X_APPLE_SESSION_ID = "X-Apple-Session-ID";
@@ -715,7 +717,7 @@ public class AirPlayService extends DeviceService implements MediaPlayer, MediaC
 
             @Override
             public void run() {
-                Log.d("Timer", "Timer");
+                LoggerManager.Companion.getInstance().log("Timer");
                 getPlaybackPosition(new PlaybackPositionListener() {
 
                     @Override

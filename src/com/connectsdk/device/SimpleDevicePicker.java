@@ -36,6 +36,8 @@ import com.connectsdk.service.DeviceService;
 import com.connectsdk.service.DeviceService.PairingType;
 import com.connectsdk.service.command.ServiceCommandError;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 /**
  * A device picker that automatically connects to the device
  * and automatically displays pairing dialogs when needed.
@@ -100,7 +102,7 @@ public class SimpleDevicePicker implements ConnectableDeviceListener {
         }
 
         if (id == 0) {
-            Log.w("ConnectSDK", "missing string resource for \"" + key + "\"");
+            LoggerManager.Companion.getInstance().log("ConnectSDK, missing string resource for \"" + key + "\"");
 
             throw new Resources.NotFoundException(key);
         }
@@ -266,7 +268,7 @@ public class SimpleDevicePicker implements ConnectableDeviceListener {
 
     @Override
     public void onPairingRequired(ConnectableDevice device, DeviceService service, final PairingType pairingType) {
-        Log.d("SimpleDevicePicker", "pairing required for device " + device.getFriendlyName());
+        LoggerManager.Companion.getInstance().log("Simple Dialog Picker, pairing required for device " + device.getFriendlyName());
 
         Util.runOnUI(new Runnable() {
             @Override

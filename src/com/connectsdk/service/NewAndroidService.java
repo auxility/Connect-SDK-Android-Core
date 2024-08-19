@@ -7,6 +7,8 @@ import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.service.config.ServiceConfig;
 import com.connectsdk.service.config.ServiceDescription;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class NewAndroidService extends DeviceService {
 
@@ -17,7 +19,7 @@ public class NewAndroidService extends DeviceService {
     }
 
     public static DiscoveryFilter discoveryFilter() {
-        Log.d("NEW_ANDROID_SERVICE", "discoveryFilter()");
+        LoggerManager.Companion.getInstance().log("NEW_ANDROID_SERVICE, discoveryFilter()");
         return new DiscoveryFilter(ID, "_androidtvremote2._tcp.local.");
     }
 

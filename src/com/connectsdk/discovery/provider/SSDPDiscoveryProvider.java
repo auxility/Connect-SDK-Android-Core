@@ -52,6 +52,8 @@ import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class SSDPDiscoveryProvider implements DiscoveryProvider {
     Context context;
@@ -231,7 +233,7 @@ public class SSDPDiscoveryProvider implements DiscoveryProvider {
     @Override
     public void addDeviceFilter(DiscoveryFilter filter) {
         if (filter.getServiceFilter() == null) {
-            Log.e(Util.T, "This device filter does not have ssdp filter info");
+            LoggerManager.Companion.getInstance().log(Util.T + "This device filter does not have ssdp filter info");
         } else {
             serviceFilters.add(filter);
         }
@@ -292,12 +294,12 @@ public class SSDPDiscoveryProvider implements DiscoveryProvider {
 //
 //            @Override
 //            public void run() {
-//                Log.d("Connect SDK Socket", "Packet received | type = " + ssdpPacket.type);
+//                LoggerManager.Companion.getInstance().log("Connect SDK Socket, Packet received | type = " + ssdpPacket.type);
 //
 //                for (String key : ssdpPacket.data.keySet()) {
-//                    Log.d("Connect SDK Socket", "    " + key + " = " + ssdpPacket.data.get(key));
+//                    LoggerManager.Companion.getInstance().log("Connect SDK Socket, " + key + " = " + ssdpPacket.data.get(key));
 //                }
-//                Log.d("Connect SDK Socket", "__________________________________________");
+//                LoggerManager.Companion.getInstance().log("Connect SDK Socket, __________________________________________");
 //            }
 //        });
         // End Debugging stuff

@@ -8,8 +8,10 @@ import android.util.Log;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 public class Logger {
-    private static final String TAG = "LGCAST";
+    private static final String TAG = "LGCAST, ";
     private static ScrollView mScrollView = null;
     private static TextView mTextView = null;
     private static boolean mShowDebug = true;
@@ -53,9 +55,9 @@ public class Logger {
         String fileName = element.getClassName();
         String caller = String.format("[%s:%d] ", fileName.substring(fileName.lastIndexOf(".") + 1), element.getLineNumber());
 
-        if (type == Log.VERBOSE) Log.v(TAG, caller + message);
-        else if (type == Log.DEBUG) Log.d(TAG, caller + message);
-        else if (type == Log.ERROR) Log.e(TAG, caller + message);
+        if (type == Log.VERBOSE) LoggerManager.Companion.getInstance().log(TAG + caller + message);
+        else if (type == Log.DEBUG) LoggerManager.Companion.getInstance().log(TAG + caller + message);
+        else if (type == Log.ERROR) LoggerManager.Companion.getInstance().log(TAG + caller + message);
 
         if (mScrollView != null && mTextView != null) {
             mTextView.post(() -> {

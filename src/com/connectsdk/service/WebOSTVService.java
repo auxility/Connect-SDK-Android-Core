@@ -96,6 +96,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 @SuppressLint("DefaultLocale")
 public class WebOSTVService extends WebOSTVDeviceService implements Launcher, MediaPlayer, PlaylistControl, VolumeControl, TVControl, ToastControl, ExternalInputControl, MouseControl, KeyControl, TextInputControl, WebAppLauncher, ScreenMirroringControl, RemoteCameraControl {
@@ -261,7 +263,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
 
     @Override
     public void disconnect() {
-        Log.d(Util.T, "attempting to disconnect to " + serviceDescription.getIpAddress());
+        LoggerManager.Companion.getInstance().log(Util.T + "attempting to disconnect to " + serviceDescription.getIpAddress());
 
         Util.runOnUI(new Runnable() {
 
@@ -339,7 +341,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
             try {
                 setClientKey(ClientKey);
             } catch (Exception e) {
-                Log.e("ConnectSDK",e.getMessage(), e);
+                LoggerManager.Companion.getInstance().log("ConnectSDK" + e.getMessage() + e.toString());
             }
         }
 
@@ -1123,7 +1125,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
             displayMedia(params, listener);
         } catch (JSONException ex) {
             Util.postError(listener, new ServiceCommandError(-1, ex.getLocalizedMessage(), ex));
-            Log.e(Util.T, "Create JSON request for ssap://media.viewer/open failure", ex);
+            LoggerManager.Companion.getInstance().log(Util.T + "Create JSON request for ssap://media.viewer/open failure" + ex.toString());
         }
     }
 
@@ -1441,7 +1443,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
                 payload.put("inputId", externalInputInfo.getId());
             }
             else {
-                Log.w(Util.T, "ExternalInputInfo has no id");
+                LoggerManager.Companion.getInstance().log(Util.T + "ExternalInputInfo has no id");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1508,7 +1510,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Connect mouse error: " + error.getMessage());
+                LoggerManager.Companion.getInstance().log(Util.T + "Connect mouse error: " + error.getMessage());
             }
         };
 
@@ -2544,7 +2546,7 @@ public class WebOSTVService extends WebOSTVDeviceService implements Launcher, Me
             config.setClientKey(null);
 
             if (isConnected()) {
-                Log.w(Util.T, "Permissions changed -- you will need to re-pair to the TV.");
+                LoggerManager.Companion.getInstance().log(Util.T + "Permissions changed -- you will need to re-pair to the TV.");
                 disconnect();
             }
         }

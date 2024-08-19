@@ -36,6 +36,8 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 /**
  * Created by Martin on 08.05.2017.
  */
@@ -146,7 +148,7 @@ public class AirPlayAuth {
 
         byte[] pairVerify1Response = doPairVerify1(socket, randomPublicKey);
         doPairVerify2(socket, pairVerify1Response, randomPrivateKey, randomPublicKey);
-        Log.i("LSH","Pair Verify finished!");
+        LoggerManager.Companion.getInstance().log("LSH" + "Pair Verify finished!");
         return socket;
     }
 

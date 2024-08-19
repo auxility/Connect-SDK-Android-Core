@@ -69,6 +69,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class RokuService extends DeviceService implements Launcher, MediaPlayer, MediaControl, KeyControl, TextInputControl {
 
@@ -821,7 +823,7 @@ public class RokuService extends DeviceService implements Launcher, MediaPlayer,
 
         String uri = requestURL(action, param);
 
-        Log.d(Util.T, "RokuService::send() | uri = " + uri);
+        LoggerManager.Companion.getInstance().log(Util.T + "RokuService::send() | uri = " + uri);
 
         ServiceCommand<ResponseListener<Object>> request = new ServiceCommand<ResponseListener<Object>>(
                 this, uri, null, listener);
@@ -902,7 +904,7 @@ public class RokuService extends DeviceService implements Launcher, MediaPlayer,
                 Object payload = command.getPayload();
 
                 try {
-                    Log.d("", "RESP " + command.getTarget());
+                    LoggerManager.Companion.getInstance().log("RESP " + command.getTarget());
                     HttpConnection connection = HttpConnection.newInstance(URI.create(command.getTarget()));
                     if (command.getHttpMethod().equalsIgnoreCase(ServiceCommand.TYPE_POST)) {
                         connection.setMethod(HttpConnection.Method.POST);
@@ -912,7 +914,7 @@ public class RokuService extends DeviceService implements Launcher, MediaPlayer,
                     }
                     connection.execute();
                     int code = connection.getResponseCode();
-                    Log.d("", "RESP " + code);
+                    LoggerManager.Companion.getInstance().log("RESP " + code);
                     if (code == 200 || code == 201) {
                         Util.postSuccess(command.getResponseListener(), connection.getResponseString());
                     } else {

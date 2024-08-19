@@ -46,6 +46,8 @@ import com.connectsdk.discovery.DiscoveryProvider;
 import com.connectsdk.discovery.DiscoveryProviderListener;
 import com.connectsdk.service.config.ServiceDescription;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class ZeroconfDiscoveryProvider implements DiscoveryProvider {
     private static final String HOSTNAME = "connectsdk";
@@ -269,7 +271,7 @@ public class ZeroconfDiscoveryProvider implements DiscoveryProvider {
     @Override
     public void addDeviceFilter(DiscoveryFilter filter) {
         if (filter.getServiceFilter() == null) {
-            Log.e(Util.T, "This device filter does not have zeroconf filter info");
+            LoggerManager.Companion.getInstance().log(Util.T + "This device filter does not have zeroconf filter info");
         } else {
             serviceFilters.add(filter);
         }

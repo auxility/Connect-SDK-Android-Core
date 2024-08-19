@@ -59,6 +59,8 @@ import com.connectsdk.service.config.ServiceConfig;
 import com.connectsdk.service.config.ServiceConfig.ServiceConfigListener;
 import com.connectsdk.service.config.ServiceDescription;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 /**
  * ###Overview
  *
@@ -267,7 +269,7 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
                         break;
 
                     case DISCONNECTED:
-                        Log.w(Util.T, "Network connection is disconnected");
+                        LoggerManager.Companion.getInstance().log(Util.T + "Network connection is disconnected");
 
                         for (DiscoveryProvider provider : discoveryProviders) {
                             provider.reset();
@@ -542,6 +544,8 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
             return;
         }
 
+        LoggerManager.Companion.getInstance().log("DISCOVERY MANAGER, start()");
+
         mSearching = true;
         multicastLock.acquire();
 
@@ -561,7 +565,7 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
                         provider.start();
                     }
                 } else {
-                    Log.w(Util.T, "Wifi is not connected yet");
+                    LoggerManager.Companion.getInstance().log(Util.T + "Wifi is not connected yet");
 
                     Util.runOnUI(new Runnable() {
 
@@ -781,7 +785,7 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
 
     @Override
     public void onServiceAdded(DiscoveryProvider provider, ServiceDescription serviceDescription) {
-        Log.d(Util.T, "Service added: " + serviceDescription.getFriendlyName() + " (" + serviceDescription.getServiceID() + ")");
+        LoggerManager.Companion.getInstance().log("Service added: " + serviceDescription.getFriendlyName() + " (" + serviceDescription.getServiceID() + ")");
 
         String devKey = getDeviceKey(serviceDescription);
         boolean deviceIsNew = !allDevices.containsKey(devKey);
@@ -833,12 +837,12 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
     @Override
     public void onServiceRemoved(DiscoveryProvider provider, ServiceDescription serviceDescription) {
         if (serviceDescription == null) {
-            Log.w(Util.T, "onServiceRemoved: unknown service description");
+            LoggerManager.Companion.getInstance().log(Util.T + "onServiceRemoved: unknown service description");
 
             return;
         }
 
-        Log.d(Util.T, "onServiceRemoved: friendlyName: " + serviceDescription.getFriendlyName());
+        LoggerManager.Companion.getInstance().log(Util.T + "onServiceRemoved: friendlyName: " + serviceDescription.getFriendlyName());
 
         String devKey = getDeviceKey(serviceDescription);
         ConnectableDevice device = allDevices.get(devKey);
@@ -859,12 +863,12 @@ public class DiscoveryManager implements ConnectableDeviceListener, DiscoveryPro
 
     @Override
     public void onServiceDiscoveryFailed(DiscoveryProvider provider, ServiceCommandError error) {
-        Log.w(Util.T, "DiscoveryProviderListener, Service Discovery Failed");
+        LoggerManager.Companion.getInstance().log(Util.T + "DiscoveryProviderListener, Service Discovery Failed");
     } 
 
     @SuppressWarnings("unchecked")
     public void addServiceDescriptionToDevice(ServiceDescription desc, ConnectableDevice device) {
-        Log.d(Util.T, "Adding service " + desc.getServiceID() + " to device with address " + device.getIpAddress() + " and id " + device.getId());
+        LoggerManager.Companion.getInstance().log(Util.T + "Adding service " + desc.getServiceID() + " to device with address " + device.getIpAddress() + " and id " + device.getId());
 
         Class<? extends DeviceService> deviceServiceClass = deviceClasses.get(desc.getServiceID());
 

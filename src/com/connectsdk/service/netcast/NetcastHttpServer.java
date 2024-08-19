@@ -53,6 +53,8 @@ import com.connectsdk.service.NetcastTVService;
 import com.connectsdk.service.capability.listeners.ResponseListener;
 import com.connectsdk.service.command.URLServiceSubscription;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 public class NetcastHttpServer {
     static final String UDAP_PATH_EVENT = "/udap/api/event";
 
@@ -130,7 +132,7 @@ public class NetcastHttpServer {
 
             String body = sb.toString();
 
-            Log.d(Util.T, "got message body: " + body);
+            LoggerManager.Companion.getInstance().log(Util.T + "got message body: " + body);
 
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
@@ -190,7 +192,7 @@ public class NetcastHttpServer {
             if (body.contains("ChannelChanged")) {
                 ChannelInfo channel = NetcastChannelParser.parseRawChannelData(handler.getJSONObject());
 
-                Log.d(Util.T, "Channel Changed: " + channel.getNumber());
+                LoggerManager.Companion.getInstance().log(Util.T + "Channel Changed: " + channel.getNumber());
 
                 for (URLServiceSubscription<?> sub: subscriptions) {
                     if (sub.getTarget().equalsIgnoreCase("ChannelChanged")) {
@@ -216,7 +218,7 @@ public class NetcastHttpServer {
                     e.printStackTrace();
                 }
 
-                Log.d(Util.T, "KeyboardFocused?: " + focused);
+                LoggerManager.Companion.getInstance().log(Util.T + "KeyboardFocused?: " + focused);
 
                 for (URLServiceSubscription<?> sub: subscriptions) {
                     if (sub.getTarget().equalsIgnoreCase("KeyboardVisible")) {
@@ -229,7 +231,7 @@ public class NetcastHttpServer {
                 }
             }
             else if (body.contains("TextEdited")) {
-                System.out.println("TextEdited");
+                LoggerManager.Companion.getInstance().log("TextEdited");
 
                 String newValue = "";
 

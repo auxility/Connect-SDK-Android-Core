@@ -90,6 +90,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class DLNAService extends DeviceService implements PlaylistControl, MediaControl, MediaPlayer, VolumeControl {
     public static final String ID = "DLNA";
@@ -943,9 +945,9 @@ public class DLNAService extends DeviceService implements PlaylistControl, Media
             Date d2 = df.parse("00:00:00");
             time = d.getTime() - d2.getTime();
         } catch (ParseException e) {
-            Log.w(Util.T, "Invalid Time Format: " + strTime);
+            LoggerManager.Companion.getInstance().log(Util.T + "Invalid Time Format: " + strTime);
         } catch (NullPointerException e) {
-            Log.w(Util.T, "Null time argument");
+            LoggerManager.Companion.getInstance().log(Util.T + "Null time argument");
         }
 
         return time;

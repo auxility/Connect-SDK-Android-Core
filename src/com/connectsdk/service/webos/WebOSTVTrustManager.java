@@ -1,7 +1,5 @@
 package com.connectsdk.service.webos;
 
-import android.util.Log;
-
 import com.connectsdk.core.Util;
 
 import javax.net.ssl.X509TrustManager;
@@ -9,6 +7,8 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 import java.util.Arrays;
+
+import ca.auxility.tvrc.logger.core.LoggerManager;
 
 public class WebOSTVTrustManager implements X509TrustManager {
     X509Certificate expectedCert;
@@ -29,7 +29,7 @@ public class WebOSTVTrustManager implements X509TrustManager {
 
     @Override
     public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        Log.d(Util.T, "Expecting device cert " + (expectedCert != null ? expectedCert.getSubjectDN() : "(any)"));
+        LoggerManager.Companion.getInstance().log(Util.T + "Expecting device cert " + (expectedCert != null ? expectedCert.getSubjectDN() : "(any)"));
 
         if (chain != null && chain.length > 0) {
             X509Certificate cert = chain[0];
@@ -40,7 +40,7 @@ public class WebOSTVTrustManager implements X509TrustManager {
                 byte [] certBytes = cert.getEncoded();
                 byte [] expectedCertBytes = expectedCert.getEncoded();
 
-                Log.d(Util.T, "Device presented cert " + cert.getSubjectDN());
+                LoggerManager.Companion.getInstance().log(Util.T + "Device presented cert " + cert.getSubjectDN());
 
                 if (!Arrays.equals(certBytes, expectedCertBytes)) {
                     throw new CertificateException("certificate does not match");

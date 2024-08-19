@@ -58,6 +58,8 @@ import java.util.HashMap;
 
 import javax.net.ssl.SSLContext;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @SuppressLint("DefaultLocale")
 public class WebOSTVServiceSocketClient extends WebSocketClient implements ServiceCommandProcessor {
 
@@ -186,7 +188,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
     public void connect() {
         synchronized (this) {
             if (state != State.INITIAL) {
-                Log.w(Util.T, "already connecting; not trying to connect again: " + state);
+                LoggerManager.Companion.getInstance().log(Util.T + "already connecting; not trying to connect again: " + state);
                 return; // don't try to connect again while connected
             }
 
@@ -252,20 +254,20 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
 
     @Override
     public void onMessage(String data) {
-        Log.d(Util.T, "webOS Socket [IN] : " + data);
+        LoggerManager.Companion.getInstance().log(Util.T + "webOS Socket [IN] : " + data);
 
         this.handleMessage(data);
     }
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println("onClose: " + code + ": " + reason);
+        LoggerManager.Companion.getInstance().log("onClose: " + code + ": " + reason);
         this.handleConnectionLost(true, null);
     }
 
     @Override
     public void onError(Exception ex) {
-        System.err.println("onError: " + ex);
+        LoggerManager.Companion.getInstance().log("onError: " + ex);
 
         if (!mConnectSucceeded) {
             this.handleConnectError(ex);
@@ -279,7 +281,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
     }
 
     protected void handleConnectError(Exception ex) {
-        System.err.println("connect error: " + ex.toString());
+        LoggerManager.Companion.getInstance().log("connect error: " + ex.toString());
 
         if (mListener != null)
             mListener.onFailWithError(new ServiceCommandError(0, "connection error", null));
@@ -329,7 +331,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
 
         if ("response".equals(type)) {
             if (request != null) {
-//                Log.d(Util.T, "Found requests need to handle response");
+//                LoggerManager.Companion.getInstance().log(Util.T + "Found requests need to handle response");
                 if (payload != null) {
                     Util.postSuccess(request.getResponseListener(), payload);
                 }
@@ -344,7 +346,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
                         }
                 }
             } else {
-                System.err.println("no matching request id: " + strId + ", payload: " + payload.toString());
+                LoggerManager.Companion.getInstance().log("no matching request id: " + strId + ", payload: " + payload.toString());
             }
         } else if ("registered".equals(type)) {
             if (!(mconfig instanceof WebOSTVServiceConfig)) {
@@ -369,7 +371,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
                             requests.remove(id);
                         }
                 } else {
-                    Log.d(Util.T, "Certification Verification Failed");
+                    LoggerManager.Companion.getInstance().log(Util.T + "Certification Verification Failed");
                     mListener.onRegistrationFailed(new ServiceCommandError(0, "Certificate Registration failed", null));
                 }
             }
@@ -390,11 +392,11 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
             }
 
             if (payload != null) {
-                Log.d(Util.T, "Error Payload: " + payload.toString());
+                LoggerManager.Companion.getInstance().log(Util.T + "Error Payload: " + payload.toString());
             }
 
             if (message.has("id")) {
-                Log.d(Util.T, "Error Desc: " + errorDesc);
+                LoggerManager.Companion.getInstance().log(Util.T + "Error Desc: " + errorDesc);
 
                 if (request != null) {
                     Util.postError(request.getResponseListener(), new ServiceCommandError(errorCode, errorDesc, payload));
@@ -702,7 +704,7 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
         if (!commandQueue.isEmpty()) {
             LinkedHashSet<ServiceCommand<ResponseListener<Object>>> tempHashSet = new LinkedHashSet<ServiceCommand<ResponseListener<Object>>>(commandQueue);
             for (ServiceCommand<ResponseListener<Object>> command : tempHashSet) {
-                Log.d(Util.T, "executing queued command for " + command.getTarget());
+                LoggerManager.Companion.getInstance().log(Util.T + "executing queued command for " + command.getTarget());
 
                 sendCommandImmediately(command);
                 commandQueue.remove(command);
@@ -741,10 +743,10 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
         if (state == State.REGISTERED) {
             this.sendCommandImmediately(command);
         } else if (state == State.CONNECTING || state == State.DISCONNECTING){
-            Log.d(Util.T, "queuing command for " + command.getTarget());
+            LoggerManager.Companion.getInstance().log(Util.T + "queuing command for " + command.getTarget());
             commandQueue.add((ServiceCommand<ResponseListener<Object>>) command);
         } else {
-            Log.d(Util.T, "queuing command and restarting socket for " + command.getTarget());
+            LoggerManager.Companion.getInstance().log(Util.T + "queuing command and restarting socket for " + command.getTarget());
             commandQueue.add((ServiceCommand<ResponseListener<Object>>) command);
             connect();
         }
@@ -876,12 +878,12 @@ public class WebOSTVServiceSocketClient extends WebSocketClient implements Servi
         if (isConnected()) {
             String message = packet.toString();
 
-            Log.d(Util.T, "webOS Socket [OUT] : " + message);
+            LoggerManager.Companion.getInstance().log(Util.T + "webOS Socket [OUT] : " + message);
 
             this.send(message);
         }
         else {
-            System.err.println("connection lost");
+            LoggerManager.Companion.getInstance().log("connection lost");
             handleConnectionLost(false, null);
         }
     }

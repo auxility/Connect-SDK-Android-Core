@@ -58,6 +58,8 @@ import com.connectsdk.service.capability.WebAppLauncher;
 import com.connectsdk.service.command.ServiceCommandError;
 import com.connectsdk.service.config.ServiceDescription;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 /**
  * ###Overview
  * ConnectableDevice serves as a normalization layer between your app and each of the device's services. It consolidates a lot of key data about the physical device and provides access to underlying functionality.
@@ -668,7 +670,7 @@ public class ConnectableDevice implements DeviceServiceListener {
                 foundController = controller;
  
                 if (controllerPriority == null || controllerPriority == CapabilityPriorityLevel.NOT_SUPPORTED) {
-                    Log.w(Util.T, "We found a mathcing capability class, but no priority level for the class. Please check \"getPriorityLevel()\" in your class");
+                    LoggerManager.Companion.getInstance().log(Util.T + "We found a mathcing capability class, but no priority level for the class. Please check \"getPriorityLevel()\" in your class");
                 }
                 foundControllerPriority = controllerPriority;
             }

@@ -51,6 +51,8 @@ import com.connectsdk.service.sessions.LaunchSession.LaunchSessionType;
 import com.connectsdk.service.webos.WebOSTVServiceSocketClient;
 import com.connectsdk.service.webos.WebOSTVServiceSocketClient.WebOSTVServiceSocketClientListener;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 public class WebOSWebAppSession extends WebAppSession {
     private static final String namespaceKey = "connectsdk.";
     private static final String ENABLED_SUBTITLE_ID = "1";
@@ -103,7 +105,7 @@ public class WebOSWebAppSession extends WebAppSession {
             if (errorMsg.length() == 0) {
                 return;
             } else {
-                Log.w(Util.T, "Play State Error: " + errorMsg);
+                LoggerManager.Companion.getInstance().log(Util.T + "Play State Error: " + errorMsg);
                 if (mPlayStateSubscription != null) {
                     for (PlayStateListener listener : mPlayStateSubscription.getListeners()) {
                         Util.postError(listener, new ServiceCommandError(errorMsg));

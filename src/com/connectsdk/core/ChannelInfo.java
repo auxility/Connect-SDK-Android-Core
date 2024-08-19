@@ -22,6 +22,7 @@ package com.connectsdk.core;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ca.auxility.tvrc.logger.core.LoggerManager;
 
 import android.util.Log;
 
@@ -127,9 +128,9 @@ public class ChannelInfo implements JSONSerializable {
                         && this.minorNumber == other.minorNumber;
             }
 
-            Log.d(Util.T, "Could not compare channel values, no data to compare against");
-            Log.d(Util.T, "This channel info: \n" + this.rawData.toString());
-            Log.d(Util.T, "Other channel info: \n" + other.rawData.toString());
+            LoggerManager.Companion.getInstance().log(Util.T + "Could not compare channel values, no data to compare against");
+            LoggerManager.Companion.getInstance().log(Util.T + "This channel info: \n" + this.rawData.toString());
+            LoggerManager.Companion.getInstance().log(Util.T + "Other channel info: \n" + other.rawData.toString());
 
             return false;
         }

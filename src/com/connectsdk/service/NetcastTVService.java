@@ -86,6 +86,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class NetcastTVService extends DeviceService implements Launcher, MediaControl, MediaPlayer, TVControl, VolumeControl, ExternalInputControl, MouseControl, TextInputControl, PowerControl, KeyControl {
 
@@ -206,7 +208,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
     @Override
     public void connect() {
         if (state != State.INITIAL) {
-            Log.w(Util.T, "already connecting; not trying to connect again: " + state);
+            LoggerManager.Companion.getInstance().log(Util.T + "already connecting; not trying to connect again: " + state);
             return; // don't try to connect again while connected
         }
 
@@ -601,7 +603,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
     @Override
     public void launchBrowser(String url, final Launcher.AppLaunchListener listener) {
         if (!(url == null || url.length() == 0))
-            Log.w(Util.T, "Netcast TV does not support deeplink for Browser");
+            LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV does not support deeplink for Browser");
 
         final String appName = "Internet";
 
@@ -1526,7 +1528,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
             getDLNAService().displayImage(url, mimeType, title, description, iconSrc, launchListener);
         }
         else {
-            System.err.println("DLNA Service is not ready yet");
+            LoggerManager.Companion.getInstance().log("DLNA Service is not ready yet");
         }
     }
 
@@ -1589,7 +1591,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
             getDLNAService().playMedia(mediaInfo, shouldLoop, launchListener);
         }
         else {
-            System.err.println("DLNA Service is not ready yet");
+            LoggerManager.Companion.getInstance().log("DLNA Service is not ready yet");
         }
     }
 
@@ -1739,7 +1741,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onSuccess(Object response) {
-                Log.d(Util.T, "Netcast TV's mouse has been connected");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's mouse has been connected");
 
                 mMouseDistance = new PointF(0, 0);
                 mMouseIsMoving = false;
@@ -1747,7 +1749,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's mouse connection has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's mouse connection has been failed");
             }
         };
 
@@ -1769,7 +1771,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's mouse click has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's mouse click has been failed");
             }
         };
 
@@ -1823,7 +1825,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's mouse move has failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's mouse move has failed");
 
                 mMouseIsMoving = false;
             }
@@ -1851,7 +1853,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's mouse scroll has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's mouse scroll has been failed");
             }
         };
 
@@ -1903,7 +1905,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
     @Override
     public void sendText(final String input) {
-        Log.d(Util.T, "Add to Queue: " + input);
+        LoggerManager.Companion.getInstance().log(Util.T + "Add to Queue: " + input);
         keyboardString.append(input);
         handleKeyboardInput("Editing", keyboardString.toString());
     }
@@ -1920,7 +1922,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's enter key has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's enter key has been failed");
             }
         };
         handleKeyboardInput("EditEnd", keyboardString.toString());
@@ -1960,7 +1962,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's keyboard input has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's keyboard input has been failed");
             }
         };
 
@@ -2051,7 +2053,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
 
             @Override
             public void onError(ServiceCommandError error) {
-                Log.w(Util.T, "Netcast TV's power off has been failed");
+                LoggerManager.Companion.getInstance().log(Util.T + "Netcast TV's power off has been failed");
             }
         };
 
@@ -2311,7 +2313,7 @@ public class NetcastTVService extends DeviceService implements Launcher, MediaCo
                     }
                     connection.execute();
                     int code = connection.getResponseCode();
-                    Log.d("", "RESP " + code);
+                    LoggerManager.Companion.getInstance().log("RESP " + code);
                     if (code == 200) {
                         Util.postSuccess(command.getResponseListener(), connection.getResponseString());
                     } else {

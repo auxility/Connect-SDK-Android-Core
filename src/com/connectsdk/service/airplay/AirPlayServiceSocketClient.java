@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @SuppressLint("DefaultLocale")
 public class AirPlayServiceSocketClient implements ServiceCommandProcessor {
     int PORT = 7000;
@@ -91,7 +93,7 @@ public class AirPlayServiceSocketClient implements ServiceCommandProcessor {
     public void connect() {
         synchronized (this) {
             if (state != State.INITIAL) {
-                Log.w(Util.T, "already connecting; not trying to connect again: " + state);
+                LoggerManager.Companion.getInstance().log(Util.T + "already connecting; not trying to connect again: " + state);
                 return; // don't try to connect again while connected
             }
 

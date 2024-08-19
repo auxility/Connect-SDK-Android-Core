@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import ca.auxility.tvrc.logger.core.LoggerManager;
+
 @Keep
 public class DIALService extends DeviceService implements Launcher {
 
@@ -242,7 +244,7 @@ public class DIALService extends DeviceService implements Launcher {
                     put("v", contentId);
                 }};
             } catch (JSONException e) {
-                Log.e(Util.T, "Launch Netflix error", e);
+                LoggerManager.Companion.getInstance().log(Util.T + "Launch Netflix error" + e.toString());
             }
         }
 
@@ -479,7 +481,7 @@ public class DIALService extends DeviceService implements Launcher {
 
     private void probeForAppSupport() {
         if (serviceDescription.getApplicationURL() == null) {
-            Log.d(Util.T, "unable to check for installed app; no service application url");
+            LoggerManager.Companion.getInstance().log(Util.T + "unable to check for installed app; no service application url");
             return;
         }
 
