@@ -22,7 +22,6 @@ package com.connectsdk.service;
 
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.util.Xml;
 import androidx.annotation.Keep;
 
@@ -90,7 +89,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class DLNAService extends DeviceService implements PlaylistControl, MediaControl, MediaPlayer, VolumeControl {

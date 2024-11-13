@@ -21,7 +21,7 @@
 package com.connectsdk.service;
 
 import android.text.TextUtils;
-import android.util.Log;
+
 import androidx.annotation.Keep;
 
 import com.connectsdk.core.AppInfo;
@@ -69,7 +69,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class RokuService extends DeviceService implements Launcher, MediaPlayer, MediaControl, KeyControl, TextInputControl {

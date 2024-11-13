@@ -24,7 +24,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PointF;
-import android.util.Log;
 import android.view.Surface;
 import androidx.annotation.NonNull;
 import androidx.annotation.Keep;
@@ -33,7 +32,6 @@ import com.connectsdk.core.ChannelInfo;
 import com.connectsdk.core.ExternalInputInfo;
 import com.connectsdk.core.ImageInfo;
 import com.connectsdk.core.MediaInfo;
-import com.connectsdk.core.TextInputStatusInfo;
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.discovery.DiscoveryManager;
@@ -96,7 +94,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 @SuppressLint("DefaultLocale")

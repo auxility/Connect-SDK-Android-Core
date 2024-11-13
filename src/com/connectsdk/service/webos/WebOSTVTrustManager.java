@@ -8,7 +8,7 @@ import java.security.cert.X509Certificate;
 
 import java.util.Arrays;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 public class WebOSTVTrustManager implements X509TrustManager {
     X509Certificate expectedCert;

@@ -44,8 +44,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xml.sax.SAXException;
 
-import android.util.Log;
-
 import com.connectsdk.core.ChannelInfo;
 import com.connectsdk.core.TextInputStatusInfo;
 import com.connectsdk.core.Util;
@@ -53,7 +51,7 @@ import com.connectsdk.service.NetcastTVService;
 import com.connectsdk.service.capability.listeners.ResponseListener;
 import com.connectsdk.service.command.URLServiceSubscription;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 public class NetcastHttpServer {
     static final String UDAP_PATH_EVENT = "/udap/api/event";

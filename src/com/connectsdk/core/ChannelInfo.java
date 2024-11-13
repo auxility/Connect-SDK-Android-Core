@@ -22,9 +22,7 @@ package com.connectsdk.core;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import ca.auxility.tvrc.logger.core.LoggerManager;
-
-import android.util.Log;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 /**
  * Normalized reference object for information about a TVs channels. This object is required to set the channel on a TV.

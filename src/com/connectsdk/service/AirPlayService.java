@@ -22,7 +22,7 @@ package com.connectsdk.service;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
+
 import androidx.annotation.Keep;
 
 import com.connectsdk.core.ImageInfo;
@@ -65,7 +65,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class AirPlayService extends DeviceService implements MediaPlayer, MediaControl {

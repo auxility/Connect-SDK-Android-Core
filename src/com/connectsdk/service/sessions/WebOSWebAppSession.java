@@ -21,7 +21,6 @@
 package com.connectsdk.service.sessions;
 
 import androidx.annotation.NonNull;
-import android.util.Log;
 
 import java.util.Enumeration;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.connectsdk.service.sessions.LaunchSession.LaunchSessionType;
 import com.connectsdk.service.webos.WebOSTVServiceSocketClient;
 import com.connectsdk.service.webos.WebOSTVServiceSocketClient.WebOSTVServiceSocketClientListener;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 public class WebOSWebAppSession extends WebAppSession {
     private static final String namespaceKey = "connectsdk.";

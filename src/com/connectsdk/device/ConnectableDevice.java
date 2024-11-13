@@ -31,8 +31,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryManager;
 import com.connectsdk.service.DeviceService;
@@ -58,7 +56,7 @@ import com.connectsdk.service.capability.WebAppLauncher;
 import com.connectsdk.service.command.ServiceCommandError;
 import com.connectsdk.service.config.ServiceDescription;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 /**
  * ###Overview

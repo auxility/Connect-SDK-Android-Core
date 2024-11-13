@@ -20,7 +20,6 @@
 
 package com.connectsdk.service;
 
-import android.util.Log;
 import androidx.annotation.Keep;
 
 import com.connectsdk.core.AppInfo;
@@ -51,7 +50,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class DIALService extends DeviceService implements Launcher {

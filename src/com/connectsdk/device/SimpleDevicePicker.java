@@ -25,7 +25,6 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,7 +35,7 @@ import com.connectsdk.service.DeviceService;
 import com.connectsdk.service.DeviceService.PairingType;
 import com.connectsdk.service.command.ServiceCommandError;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 /**
  * A device picker that automatically connects to the device

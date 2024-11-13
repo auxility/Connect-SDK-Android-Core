@@ -21,7 +21,6 @@
 package com.connectsdk.discovery.provider;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.Keep;
 
@@ -52,7 +51,7 @@ import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class SSDPDiscoveryProvider implements DiscoveryProvider {

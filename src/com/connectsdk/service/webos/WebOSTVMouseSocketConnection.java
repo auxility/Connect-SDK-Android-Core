@@ -32,9 +32,7 @@ import org.java_websocket.enums.ReadyState;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
-import android.util.Log;
-
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 public class WebOSTVMouseSocketConnection {
     public interface WebOSTVMouseSocketListener {

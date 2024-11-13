@@ -1,7 +1,5 @@
 package com.connectsdk.service.airplay.auth;
 
-import android.util.Log;
-
 import com.connectsdk.service.airplay.auth.crypt.Curve25519;
 import com.connectsdk.service.airplay.auth.crypt.srp6.AppleSRP6ClientSessionImpl;
 import com.dd.plist.NSData;
@@ -36,7 +34,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 /**
  * Created by Martin on 08.05.2017.
