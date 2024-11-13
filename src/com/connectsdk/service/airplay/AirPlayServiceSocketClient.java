@@ -1,7 +1,6 @@
 package com.connectsdk.service.airplay;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import com.connectsdk.core.Util;
 import com.connectsdk.etc.helper.HttpMessage;
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @SuppressLint("DefaultLocale")
 public class AirPlayServiceSocketClient implements ServiceCommandProcessor {

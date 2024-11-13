@@ -36,7 +36,6 @@ import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceListener;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.Keep;
 
@@ -46,7 +45,7 @@ import com.connectsdk.discovery.DiscoveryProvider;
 import com.connectsdk.discovery.DiscoveryProviderListener;
 import com.connectsdk.service.config.ServiceDescription;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class ZeroconfDiscoveryProvider implements DiscoveryProvider {

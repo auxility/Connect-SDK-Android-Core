@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 public class Logger {
     private static final String TAG = "LGCAST, ";

@@ -1,13 +1,12 @@
 package com.connectsdk.service;
 
-import android.util.Log;
 import androidx.annotation.Keep;
 
 import com.connectsdk.discovery.DiscoveryFilter;
 import com.connectsdk.service.config.ServiceConfig;
 import com.connectsdk.service.config.ServiceDescription;
 
-import ca.auxility.tvrc.logger.core.LoggerManager;
+import com.app.auxility.ca.my.universal.tv.remote.control.logger.core.LoggerManager;
 
 @Keep
 public class NewAndroidService extends DeviceService {
