@@ -218,7 +218,7 @@ public class SSDPDiscoveryProvider implements DiscoveryProvider {
                             if (ssdpClient != null)
                                 ssdpClient.send(message);
                         } catch (IOException e) {
-                            e.printStackTrace();
+//                            e.printStackTrace();
                         }
                     }
                 };
